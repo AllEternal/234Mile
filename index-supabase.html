@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="234Mile - Nigeria's ride-sharing platform. Share rides, save money, connect with drivers.">
+    <meta name="theme-color" content="#000000">
+    
+    <!-- Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net https://unpkg.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://wa.me https://*.supabase.co wss://*.supabase.co; font-src 'self';">
+    
+    <!-- Performance: Preconnect to Supabase -->
+    <link rel="preconnect" href="https://*.supabase.co" crossorigin>
+    <link rel="preconnect" href="https://wa.me" crossorigin>
+    
+    <title>234Mile - Share Rides Across Nigeria</title>
+    <link rel="stylesheet" href="style-modern.css">
+</head>
+<body>
+    <div class="page-wrapper">
+        <div class="container">
+            
+            <!-- Header -->
+            <header class="app-header">
+                <h1>234Mile</h1>
+            </header>
+
+            <!-- Navigation Tabs -->
+            <nav class="nav-tabs" role="navigation" aria-label="Main navigation">
+                <a href="index.html" class="nav-tab active" aria-current="page">
+                    <span class="icon">🚘</span>
+                    <span>Post Trip</span>
+                </a>
+                <a href="rider.html" class="nav-tab">
+                    <span class="icon">🔍</span>
+                    <span>Find Ride</span>
+                </a>
+            </nav>
+
+            <!-- Toast Notification Container -->
+            <div id="toastContainer" class="toast-container" role="status" aria-live="polite"></div>
+
+            <!-- Driver Section: Post a Trip -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-header-icon">
+                        <div class="card-icon-wrapper">
+                            <span class="card-icon">🚘</span>
+                        </div>
+                        <div>
+                            <h2 class="card-title">Post Your Trip</h2>
+                            <p class="card-description">Share your ride and save costs</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-content">
+                    <form id="tripForm" class="form" novalidate aria-busy="false">
+                        
+                        <!-- Trip Details Section -->
+                        <div class="form-section">
+                            <h3 class="form-section-title">Trip Details</h3>
+                            
+                            <div class="form-group">
+                                <label for="fromCity">From <span class="required" aria-label="required">*</span></label>
+                                <input 
+                                    type="text" 
+                                    id="fromCity" 
+                                    name="fromCity"
+                                    placeholder="e.g., Lagos"
+                                    maxlength="50"
+                                    required
+                                    aria-required="true"
+                                    autocomplete="address-level2"
+                                    list="nigerianCities"
+                                >
+                                <span class="error-message" id="fromCityError" role="alert"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="toCity">To <span class="required" aria-label="required">*</span></label>
+                                <input 
+                                    type="text" 
+                                    id="toCity" 
+                                    name="toCity"
+                                    placeholder="e.g., Abuja"
+                                    maxlength="50"
+                                    required
+                                    aria-required="true"
+                                    autocomplete="address-level2"
+                                    list="nigerianCities"
+                                >
+                                <span class="error-message" id="toCityError" role="alert"></span>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="tripDate">Date <span class="required" aria-label="required">*</span></label>
+                                    <input 
+                                        type="date" 
+                                        id="tripDate" 
+                                        name="tripDate"
+                                        required
+                                        aria-required="true"
+                                    >
+                                    <span class="error-message" id="tripDateError" role="alert"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="tripTime">Time <span class="required" aria-label="required">*</span></label>
+                                    <input 
+                                        type="time" 
+                                        id="tripTime" 
+                                        name="tripTime"
+                                        required
+                                        aria-required="true"
+                                    >
+                                    <span class="error-message" id="tripTimeError" role="alert"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pricing Section -->
+                        <div class="form-section">
+                            <h3 class="form-section-title">Pricing & Seats</h3>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="pricePerSeat">Price per Seat (₦) <span class="required" aria-label="required">*</span></label>
+                                    <input 
+                                        type="number" 
+                                        id="pricePerSeat" 
+                                        name="pricePerSeat"
+                                        placeholder="e.g., 5000"
+                                        min="100"
+                                        max="1000000"
+                                        step="100"
+                                        required
+                                        aria-required="true"
+                                        inputmode="numeric"
+                                    >
+                                    <span class="error-message" id="pricePerSeatError" role="alert"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="totalSeats">Available Seats <span class="required" aria-label="required">*</span></label>
+                                    <input 
+                                        type="number" 
+                                        id="totalSeats" 
+                                        name="totalSeats"
+                                        placeholder="e.g., 4"
+                                        min="1"
+                                        max="20"
+                                        required
+                                        aria-required="true"
+                                        inputmode="numeric"
+                                    >
+                                    <span class="error-message" id="totalSeatsError" role="alert"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Contact Section -->
+                        <div class="form-section">
+                            <h3 class="form-section-title">Contact Information</h3>
+                            
+                            <div class="form-group">
+                                <label for="phoneNumber">Phone Number <span class="required" aria-label="required">*</span></label>
+                                <input 
+                                    type="tel" 
+                                    id="phoneNumber" 
+                                    name="phoneNumber"
+                                    placeholder="e.g., 2348012345678"
+                                    pattern="[0-9]{10,15}"
+                                    minlength="10"
+                                    maxlength="15"
+                                    required
+                                    aria-required="true"
+                                    aria-describedby="phoneHelp"
+                                    autocomplete="tel"
+                                    inputmode="numeric"
+                                >
+                                <small id="phoneHelp" class="help-text">
+                                    10-15 digits, include country code (234) for WhatsApp
+                                </small>
+                                <span class="error-message" id="phoneNumberError" role="alert"></span>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn btn-primary btn-block" id="submitBtn">
+                            <span class="btn-text">📤 Post Trip</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Nigerian Cities Dropdown List -->
+    <datalist id="nigerianCities">
+        <option value="Abuja">Abuja (FCT)</option>
+        <option value="Lagos">Lagos</option>
+        <option value="Kano">Kano</option>
+        <option value="Port Harcourt">Port Harcourt</option>
+        <option value="Ibadan">Ibadan</option>
+        <option value="Kaduna">Kaduna</option>
+        <option value="Benin City">Benin City</option>
+        <!-- Add more cities as needed -->
+    </datalist>
+
+    <!-- Supabase JavaScript Client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- Main App Script -->
+    <script src="script-supabase.js"></script>
+</body>
+</html>

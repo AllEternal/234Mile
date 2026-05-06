@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="234Mile - Find rides across Nigeria. Search available trips and connect with drivers.">
+    <meta name="theme-color" content="#000000">
+    
+    <!-- Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net https://unpkg.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://wa.me https://*.supabase.co wss://*.supabase.co; font-src 'self';">
+    
+    <!-- Performance: Preconnect to Supabase -->
+    <link rel="preconnect" href="https://*.supabase.co" crossorigin>
+    <link rel="preconnect" href="https://wa.me" crossorigin>
+    
+    <title>Find a Ride - 234Mile</title>
+    <link rel="stylesheet" href="style-modern.css">
+</head>
+<body>
+    <div class="page-wrapper">
+        <div class="container">
+            
+            <!-- Header -->
+            <header class="app-header">
+                <h1>234Mile</h1>
+            </header>
+
+            <!-- Navigation Tabs -->
+            <nav class="nav-tabs" role="navigation" aria-label="Main navigation">
+                <a href="index-supabase.html" class="nav-tab">
+                    <span class="icon">🚘</span>
+                    <span>Post Trip</span>
+                </a>
+                <a href="rider-supabase.html" class="nav-tab active" aria-current="page">
+                    <span class="icon">🔍</span>
+                    <span>Find Ride</span>
+                </a>
+            </nav>
+
+            <!-- Toast Notification Container -->
+            <div id="toastContainer" class="toast-container" role="status" aria-live="polite"></div>
+
+            <!-- Search Section -->
+            <div class="card mb-4">
+                <div class="card-content" style="padding-top: 1.5rem;">
+                    <div class="search-header mb-4">
+                        <h2 class="search-title">
+                            <span class="search-title-icon">🔍</span>
+                            Search Trips
+                        </h2>
+                    </div>
+                    
+                    <div class="form">
+                        <div class="form-group">
+                            <label for="searchFrom">From</label>
+                            <input 
+                                type="text" 
+                                id="searchFrom" 
+                                name="searchFrom"
+                                placeholder="Departure city"
+                                maxlength="50"
+                                autocomplete="address-level2"
+                                list="nigerianCities"
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="searchTo">To</label>
+                            <input 
+                                type="text" 
+                                id="searchTo" 
+                                name="searchTo"
+                                placeholder="Destination city"
+                                maxlength="50"
+                                autocomplete="address-level2"
+                                list="nigerianCities"
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="searchDate">Date</label>
+                            <input 
+                                type="date" 
+                                id="searchDate"
+                                name="searchDate"
+                                autocomplete="off"
+                            >
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div class="results-header">
+                <h2 class="results-title" id="resultsCount">Available Trips</h2>
+                <button id="clearSearchBtn" class="btn btn-ghost btn-sm" style="display: none;">
+                    Clear
+                </button>
+            </div>
+            
+            <!-- Trips Container -->
+            <div id="tripsContainer" role="list" aria-label="Available trips">
+                <!-- JavaScript will populate this -->
+                <!-- Empty state shows by default -->
+                <div class="empty-state" id="emptyState">
+                    <div class="empty-state-icon">🚗</div>
+                    <p class="empty-state-title">No trips available</p>
+                    <p class="empty-state-description">Be the first to post a trip!</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Nigerian Cities Dropdown List -->
+    <datalist id="nigerianCities">
+        <option value="Abuja">Abuja (FCT)</option>
+        <option value="Lagos">Lagos</option>
+        <option value="Kano">Kano</option>
+        <option value="Port Harcourt">Port Harcourt</option>
+        <option value="Ibadan">Ibadan</option>
+        <option value="Kaduna">Kaduna</option>
+        <option value="Benin City">Benin City</option>
+        <!-- Add more cities as needed -->
+    </datalist>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="deleteModal" class="modal" role="dialog" aria-labelledby="modalTitle" aria-modal="true">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <h3 id="modalTitle">⚠️ Delete Trip</h3>
+            <p>Are you sure you want to delete this trip? This action cannot be undone.</p>
+            <div class="modal-actions">
+                <button id="modalCancel" class="btn btn-secondary">Cancel</button>
+                <button id="modalConfirm" class="btn btn-danger">Delete Trip</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Supabase JavaScript Client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- Main App Script -->
+    <script src="script-supabase.js"></script>
+</body>
+</html>
