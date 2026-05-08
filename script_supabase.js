@@ -34,8 +34,8 @@
 const SUPABASE_ENABLED = false; // ← change to true after filling in credentials
 
 const SUPABASE_CONFIG = {
-    url:     '',  // e.g. 'https://abcdefghij.supabase.co'
-    anonKey: ''   // your anon / public key — NEVER the service_role key
+    url: 'https://tolipwgukxfgatunpoc.supabase.co',
+    anonKey: 'sb_publishable_ae3OtV06zQebkdZzexKWQQ_o9F7FIgw'
 };
 
 // ============================================
