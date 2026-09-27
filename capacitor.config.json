@@ -1,0 +1,8 @@
+{
+  "appId": "app.mile234.ride",
+  "appName": "234Mile",
+  "webDir": "dist",
+  "plugins": {
+    "SplashScreen": { "launchShowDuration": 0 }
+  }
+}
