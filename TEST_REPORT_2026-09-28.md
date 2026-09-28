@@ -14,11 +14,12 @@ The passenger web application is live at `https://234mile.tundebadeniyi.workers.
 - The Android web bundle was synchronized from the production build.
 - The pilot APK contains the current compiled JavaScript and CSS, package ID `app.mile234.ride`, minimum Android API 24, target API 36, and Internet permission.
 - APK alignment and signature verification passed with APK Signature Schemes v2 and v3.
-- APK SHA-256: `5BF04E1431B1ECF43113FC924A4914D33FCD2B0A098A686EE49542D623FD875F`.
+- Google OAuth consent, callback, Supabase code exchange, stored driver session, and the driver-profile setup entry point passed a live browser test.
+- One pilot driver is authorized; additional testers must be added while Google publishing status remains Testing.
+- APK SHA-256: `2B94A24142006D700ED13B120617499C12443D8ABE3B8496D707461B0B282D6F`.
 
 ## Remaining live-device checks
 
-- Google driver sign-in cannot be exercised until a Google OAuth web client is created and enabled in Supabase.
 - Driver publish, passenger request, confirmation/decline, outside-app transfer, full-trip hiding, cancellation, and final-seat concurrency need two signed-in test identities and two physical devices or browser profiles.
 - Offline/reconnect behavior still needs testing on Nigerian mobile networks.
 - The APK is a debug-signed pilot package. A Play Store or public production release should use a protected release signing key and an Android App Bundle.
