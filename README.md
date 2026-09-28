@@ -4,9 +4,9 @@ One responsive codebase for the web and Android. Passengers browse published int
 
 ## Current status
 
-The web build and Android project compile from the same source. Without a Supabase project, the app runs in local mode: passenger screens load and driver drafts are saved on that device, but no journey is shared with other devices. The UI labels this plainly. The original ZIP contained placeholder Supabase credentials and unrestricted database policies; those are not used here.
+The controlled pilot is live. The frontend source is in the public GitHub repository `AllEternal/234Mile` on branch `pilot-revamp`; Cloudflare automatically builds that branch and serves the web app at `https://234mile.tundebadeniyi.workers.dev`. Supabase project `tolipwgukxfgtatunpoc` supplies the shared database, authentication, private driver-document storage, row-level security, and atomic seat-booking operations. Google driver sign-in and anonymous passenger sessions are enabled.
 
-For the recommended launch procedure and pilot readiness review, read [`WEB_GO_LIVE_GUIDE.md`](WEB_GO_LIVE_GUIDE.md) and [`ANDROID_GO_LIVE_GUIDE.md`](ANDROID_GO_LIVE_GUIDE.md).
+The installable pilot APK is stored outside the public repository at `C:\Users\Mercy and Grace\OneDrive\Documents\ChatGPT\234Mile\234Mile-Live-Pilot.apk`. For the exact access, installation, Google Drive sharing, and update procedure, read [`PILOT_DISTRIBUTION_GUIDE.md`](PILOT_DISTRIBUTION_GUIDE.md). The older web and Android go-live guides remain useful as build references, but sections describing the project as unconfigured or local-only are historical.
 
 ## Connect the shared database
 
