@@ -4,7 +4,7 @@ One responsive codebase for the web and Android. Passengers browse published int
 
 ## Current status
 
-The controlled pilot is live. The frontend source is in the public GitHub repository `AllEternal/234Mile` on branch `pilot-revamp`; Cloudflare automatically builds that branch and serves the web app at `https://app.234mile.workers.dev`. Supabase project `tolipwgukxfgtatunpoc` supplies the shared database, authentication, private driver-document storage, row-level security, and atomic seat-booking operations. Google driver sign-in and anonymous passenger sessions are enabled.
+The controlled pilot is live. The frontend source is in the public GitHub repository `AllEternal/234Mile` on branch `pilot-revamp`; Cloudflare automatically builds that branch and serves the web app at `https://234mile.234mile.workers.dev`. Supabase project `tolipwgukxfgtatunpoc` supplies the shared database, authentication, private driver-document storage, row-level security, and atomic seat-booking operations. Google driver sign-in and anonymous passenger sessions are enabled.
 
 The installable pilot APK is stored outside the public repository at `C:\Users\Mercy and Grace\OneDrive\Documents\ChatGPT\234Mile\234Mile-Live-Pilot.apk`. For the exact access, installation, Google Drive sharing, and update procedure, read [`PILOT_DISTRIBUTION_GUIDE.md`](PILOT_DISTRIBUTION_GUIDE.md). The older web and Android go-live guides remain useful as build references, but sections describing the project as unconfigured or local-only are historical.
 

@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "app",
+  "name": "234mile",
   "compatibility_date": "2026-09-21",
   "assets": {
     "directory": "./dist",

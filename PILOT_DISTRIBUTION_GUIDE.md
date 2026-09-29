@@ -7,7 +7,7 @@ Updated 28 September 2026.
 | Part | Current location | Purpose |
 | --- | --- | --- |
 | Frontend source | `https://github.com/AllEternal/234Mile`, branch `pilot-revamp` | Version history and automatic deployments |
-| Web hosting | `https://app.234mile.workers.dev` | Public passenger and driver web app |
+| Web hosting | `https://234mile.234mile.workers.dev` | Public passenger and driver web app |
 | Backend | Supabase project `tolipwgukxfgtatunpoc` | Database, authentication, storage, row-level security, and booking functions |
 | Android package | `C:\Users\Mercy and Grace\OneDrive\Documents\ChatGPT\234Mile\234Mile-Live-Pilot.apk` | Installable controlled-pilot app |
 
@@ -15,7 +15,7 @@ The frontend does not run from GitHub or Supabase. GitHub stores the source. Clo
 
 ## 1. Give people access to the web app
 
-1. Share this exact link: `https://app.234mile.workers.dev`.
+1. Share this exact link: `https://234mile.234mile.workers.dev`.
 2. A passenger can open the link in Chrome, Edge, Safari, or another current browser. No passenger account is required to browse journeys.
 3. A driver opens **Offer a ride**, selects **Continue with Google**, completes the driver profile and vehicle details, and then publishes a journey.
 4. While the Google OAuth app remains in Testing status, each driver's Google email address must first be added in Google Cloud Console under **Google Auth Platform > Audience > Test users**. Google currently allows up to 100 test users for this testing state.
@@ -95,7 +95,7 @@ Record each test with the phone model, Android version, user role, action, resul
 2. Run `npm run build:deploy`.
 3. Commit the change to branch `pilot-revamp` and push it to `https://github.com/AllEternal/234Mile.git`.
 4. Cloudflare automatically builds the branch. Wait until the deployment shows **Success** and 100% production traffic.
-5. Open `https://app.234mile.workers.dev` in a private browser window and test the affected flow.
+5. Open `https://234mile.234mile.workers.dev` in a private browser window and test the affected flow.
 
 Changing the GitHub source does not move or replace the Supabase database. The deployed frontend continues using the existing Supabase project unless its environment configuration is deliberately changed.
 
@@ -122,7 +122,7 @@ The current APK is suitable for direct controlled-pilot distribution. It is not 
 
 ## 10. Current safety checks
 
-- Live web URL: `https://app.234mile.workers.dev`
+- Live web URL: `https://234mile.234mile.workers.dev`
 - APK SHA-256: `2B94A24142006D700ED13B120617499C12443D8ABE3B8496D707461B0B282D6F`
 - Android package ID: `app.mile234.ride`
 - Minimum Android version: Android 7.0 / API 24
