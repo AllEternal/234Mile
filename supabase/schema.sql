@@ -57,6 +57,7 @@ create table if not exists public.ride_offers (
   driver_name text not null,
   phone_e164 text not null check (phone_e164 ~ '^234[0-9]{10}$'),
   vehicle_summary text not null,
+  vehicle_plate text,
   from_city text not null,
   to_city text not null,
   travel_date date not null,
