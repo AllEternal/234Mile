@@ -27,12 +27,26 @@ create table if not exists public.driver_documents (
   driver_id uuid not null references auth.users(id) on delete cascade,
   vehicle_id uuid references public.vehicles(id) on delete set null,
   kind text not null check (kind in ('licence','vehicle_particulars')),
-  storage_path text not null,
+  storage_path text,
   document_number text,
   name_on_document text,
   plate_on_document text,
+  chassis_number text,
+  engine_number text,
+  expiry_date date,
+  extracted_fields jsonb not null default '{}'::jsonb,
+  extracted_text text,
+  entry_method text not null default 'photo_manual' check (entry_method in ('manual','photo_manual','photo_extracted')),
   status text not null default 'collected' check (status in ('collected','driver_corrected')),
-  created_at timestamptz not null default now()
+  created_at timestamptz not null default now(),
+  constraint driver_documents_has_content_check check (
+    storage_path is not null
+    or nullif(trim(document_number),'') is not null
+    or nullif(trim(name_on_document),'') is not null
+    or nullif(trim(plate_on_document),'') is not null
+    or nullif(trim(chassis_number),'') is not null
+    or nullif(trim(engine_number),'') is not null
+  )
 );
 create index if not exists driver_documents_driver_id_idx on public.driver_documents(driver_id);
 
