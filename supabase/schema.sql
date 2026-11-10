@@ -96,9 +96,12 @@ create policy "driver creates own documents" on public.driver_documents for inse
 create policy "driver updates own documents" on public.driver_documents for update to authenticated using ((select auth.uid()) = driver_id) with check ((select auth.uid()) = driver_id);
 
 create policy "guest sees available published rides" on public.ride_offers for select to anon
-  using (status='published' and seats_available>0 and travel_date>=current_date);
+  using (status='published' and seats_available>0
+    and (travel_date + departure_time) >= (now() at time zone 'Africa/Lagos'));
 create policy "driver sees available and own rides" on public.ride_offers for select to authenticated
-  using ((status='published' and seats_available>0 and travel_date>=current_date) or driver_id=(select auth.uid()));
+  using ((status='published' and seats_available>0
+    and (travel_date + departure_time) >= (now() at time zone 'Africa/Lagos'))
+    or driver_id=(select auth.uid()));
 create policy "driver publishes own ride" on public.ride_offers for insert to authenticated
   with check (driver_id=(select auth.uid()) and status='published' and seats_available>0
     and travel_date>=current_date and exists(select 1 from public.driver_profiles p where p.user_id=(select auth.uid()))
