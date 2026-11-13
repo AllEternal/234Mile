@@ -7,4 +7,5 @@ android/build/
 android/app/build/
 *.apk
 .toolchain/
+.gradle-user/
 .npm-cache/
